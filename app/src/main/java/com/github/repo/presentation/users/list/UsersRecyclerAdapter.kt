@@ -1,4 +1,4 @@
-package com.github.repo.presentation
+package com.github.repo.presentation.users.list
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil

@@ -1,4 +1,4 @@
-package com.github.repo.presentation
+package com.github.repo.presentation.users.list
 
 import com.bumptech.glide.Glide
 import com.github.repo.databinding.UserItemBinding
