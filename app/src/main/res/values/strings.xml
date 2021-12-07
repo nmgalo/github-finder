@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">repo</string>
+    <string name="enter_username">Enter username</string>
+    <string name="user_image">User image</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="public_project">Repository</string>
+    <string name="repositories">Repositories</string>
 </resources>
