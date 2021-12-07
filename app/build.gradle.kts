@@ -18,7 +18,7 @@ android {
         versionCode = AppConfig.versionCode
         versionName = AppConfig.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.github.repo.presentation.di.HiltTestRunner"
     }
 
     buildTypes {
@@ -51,6 +51,7 @@ dependencies {
     implementation(Libs.Androidx.material)
     implementation(Libs.Androidx.constraint_layout)
 
+
     implementation(Libs.Di.hilt)
     kapt(Libs.Di.hiltCompiler)
 
@@ -66,7 +67,17 @@ dependencies {
 
     implementation(Libs.Extras.glide)
 
+
+    // testing
     testImplementation(Libs.Test.junit)
+
+    implementation(Libs.Androidx.fragment_testing)
+    implementation(Libs.Androidx.Navigation.testing)
+
+    androidTestImplementation(Libs.Di.testing)
+    kaptAndroidTest(Libs.Di.hiltCompiler)
+
     androidTestImplementation(Libs.Test.AndroidxJUnit)
     androidTestImplementation(Libs.Test.espresso_core)
+
 }
