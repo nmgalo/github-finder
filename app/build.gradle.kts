@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    kotlin("plugin.serialization") version Versions.kotlin
     id("dagger.hilt.android.plugin")
 }
 
@@ -32,6 +33,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     kotlinOptions {
         jvmTarget = Versions.jvmTarget
     }
@@ -56,6 +62,8 @@ dependencies {
     implementation(Libs.Androidx.Navigation.ui)
     implementation(Libs.Androidx.Navigation.dynamicFeatures)
     implementation(Libs.Androidx.Navigation.navigationKotlin)
+
+    implementation(Libs.Extras.glide)
 
     testImplementation(Libs.Test.junit)
     androidTestImplementation(Libs.Test.AndroidxJUnit)

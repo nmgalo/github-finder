@@ -1,5 +1,6 @@
 package com.github.repo.di
 
+import com.github.repo.BuildConfig
 import com.github.repo.data.ApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -26,7 +27,8 @@ class NetworkModule {
         readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
         connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
         writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-        addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        if (BuildConfig.DEBUG)
+            addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         build()
     }
 

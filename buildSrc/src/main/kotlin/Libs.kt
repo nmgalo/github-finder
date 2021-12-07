@@ -40,4 +40,8 @@ object Libs {
         const val AndroidxJUnit = "androidx.test.ext:junit:1.1.3"
         const val espresso_core = "androidx.test.espresso:espresso-core:3.4.0"
     }
+
+    object Extras {
+        const val glide = "com.github.bumptech.glide:glide:4.12.0"
+    }
 }
