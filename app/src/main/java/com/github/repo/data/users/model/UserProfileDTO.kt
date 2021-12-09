@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 data class UserProfileDTO(
     @SerialName("avatar_url")
     val avatarURL: String,
-    val name: String,
+    val name: String?,
     val company: String?,
     @SerialName("public_repos")
     val publicRepos: Int,

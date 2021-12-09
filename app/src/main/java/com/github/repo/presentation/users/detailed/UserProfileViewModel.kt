@@ -2,12 +2,13 @@ package com.github.repo.presentation.users.detailed
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.github.repo.domain.GetRepositoriesUseCase
-import com.github.repo.domain.GetUserProfileUseCase
+import com.github.repo.domain.GetUserProfileWithReposUseCase
 import com.github.repo.presentation.base.BaseViewModel
 import com.github.repo.presentation.users.detailed.repos.UserRepositoriesUIModel
 import com.github.repo.presentation.utils.asyncValue
+import com.github.repo.presentation.utils.getOrThrow
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -16,8 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserProfileViewModel @Inject constructor(
-    private val getUserProfileUseCase: GetUserProfileUseCase,
-    private val getRepositoriesUseCase: GetRepositoriesUseCase
+    private val getUserProfileWithRepos: GetUserProfileWithReposUseCase,
+    savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
     private val _userProfile = MutableLiveData<UserProfileUIModel>()
@@ -26,20 +27,16 @@ class UserProfileViewModel @Inject constructor(
     private val _userRepos = MutableLiveData<List<UserRepositoriesUIModel>>()
     val userRepos: LiveData<List<UserRepositoriesUIModel>> = _userRepos
 
-    fun getProfile(userName: String) {
+    init {
+        getUserWithRepos(savedStateHandle.getOrThrow("userName"))
+    }
+
+    private fun getUserWithRepos(userName: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            getUserProfileUseCase(userName).collect {
-                _userProfile.asyncValue = it.toUIModel()
+            getUserProfileWithRepos.execute(userName).collect {
+                _userProfile.asyncValue = it.profile.toUIModel()
+                _userRepos.asyncValue = it.repos.map { repo -> repo.toUIModel() }
             }
         }
     }
-
-    fun getRepos(userName: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            getRepositoriesUseCase(userName).collect {
-                _userRepos.asyncValue = it.map { repos -> repos.toUIModel() }
-            }
-        }
-    }
-
 }

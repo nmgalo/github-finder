@@ -10,6 +10,7 @@ object Libs {
         const val appcompat = "androidx.appcompat:appcompat:1.4.0"
         const val material = "com.google.android.material:material:1.4.0"
         const val constraint_layout = "androidx.constraintlayout:constraintlayout:2.1.2"
+        const val fragment_testing = "androidx.fragment:fragment-testing:1.4.0"
 
         object Navigation {
             private const val nav_version = "2.3.5"
@@ -18,6 +19,7 @@ object Libs {
             const val dynamicFeatures =
                 "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
             const val navigationKotlin = "androidx.fragment:fragment-ktx:1.3.0-alpha04"
+            const val testing = "androidx.navigation:navigation-testing:2.3.5"
         }
     }
 
@@ -25,6 +27,7 @@ object Libs {
         private const val hiltVersion = "2.40.4"
         const val hilt = "com.google.dagger:hilt-android:$hiltVersion"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:$hiltVersion"
+        const val testing = "com.google.dagger:hilt-android-testing:2.38.1"
     }
 
     object Network {

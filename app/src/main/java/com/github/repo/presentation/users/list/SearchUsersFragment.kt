@@ -28,9 +28,11 @@ class SearchUsersFragment : BaseFragment<SearchUserViewModel>(R.layout.fragment_
         usersList.layoutManager = LinearLayoutManager(context)
         usersList.adapter = adapter
 
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenStarted {
             viewModel.searchedItems.observe(viewLifecycleOwner, adapter::submitList)
-            search.textChanges().collect(viewModel::search)
+            search.textChanges().collect {
+                if (it.isNotEmpty()) viewModel.search(it)
+            }
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner, {
