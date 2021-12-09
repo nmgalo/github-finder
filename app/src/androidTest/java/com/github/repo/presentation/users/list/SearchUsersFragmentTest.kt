@@ -39,7 +39,7 @@ class SearchUsersFragmentTest {
     fun should_showOneItem_whenEnterMyGithubUsername() {
         launchFragmentInHiltContainer<SearchUsersFragment> {
             onView(withId(R.id.search)).perform(typeText(stringToBeTyped), closeSoftKeyboard())
-            onView(withId(R.id.usersList)).check(matches(hasChildCount(2)))
+            onView(withId(R.id.usersList)).check(matches(hasChildCount(1)))
         }
     }
 
